@@ -1,0 +1,27 @@
+!!!
+%html
+	:css
+		body {
+			background-color:#dbd4c2;
+			width:1000px;
+			margin:50px auto;
+		}
+		
+		h2 {
+			margin-top:2em;
+		}
+
+	%body
+		%h1 Tweet Archive
+		
+		- TAGS.each do |tag|
+			%a{:href => tag }= tag
+		
+		- @tweets.each do |tweet|
+			%h2= tweet['text']
+			%p
+				%a{:href=> "http://twitter.com/#{tweet['from_user']}"}= tweet['from_user']
+				on
+				= tweet['created_at']
+		
+			%img{:src => tweet['profile_image_url'], :width => 48 }

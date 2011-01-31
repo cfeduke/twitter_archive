@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'mongo'
-require 'config'
+require './config'
 require 'twitter'
 
 class TweetArchiver
@@ -10,7 +10,7 @@ class TweetArchiver
     @tweets = db[COLLECTION_NAME]
     
     @tweets.create_index([['id', 1]], :unique => true)
-    @tweets.create_index([['tags', 1]], ['id', -1])
+    @tweets.create_index([['tags', 1], ['id', -1]])
     
     @tag = tag
   end
