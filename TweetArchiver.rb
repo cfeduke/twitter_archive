@@ -1,5 +1,6 @@
+require 'rubygems'
 require 'mongo'
-require 'config.rb'
+require 'config'
 require 'twitter'
 
 class TweetArchiver
@@ -12,6 +13,10 @@ class TweetArchiver
     @tweets.create_index([['tags', 1]], ['id', -1])
     
     @tag = tag
+  end
+  
+  def update
+    save_tweets_for(@tag)
   end
   
   def save_tweets_for(term)
